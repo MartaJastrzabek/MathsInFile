@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.InputMismatchException;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -20,9 +21,8 @@ public class MathInFileTest {
                 Scanner in = new Scanner(inLine);
                 in.useLocale(Locale.US);
                 double a = in.nextDouble();
-                String operation = in.next("[\\+\\-*/]");
+                String operation = in.next("[\\+\\-*/%]");
                 double b = in.nextDouble();
-
                 double result = calculate(a, b, operation);
 
                 String msg = inLine + " = " + result + "\n";
@@ -32,7 +32,7 @@ public class MathInFileTest {
                 bw.flush();
             }
 
-        } catch (IOException e){
+        } catch (IOException | InputMismatchException | IllegalArgumentException e){
             System.out.println(e.getMessage());
         }
     }
